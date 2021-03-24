@@ -120,7 +120,8 @@ const StdLibIndex::Index StdLibIndex::c89idx_
                 { "strcoll", SymbolKind::Value },
                 { "strchr", SymbolKind::Value },
                 { "strspn", SymbolKind::Value },
-                { "strcspn", SymbolKind::Value }
+                { "strcspn", SymbolKind::Value },
+                { "memcpy", SymbolKind::Value }
             }
         },
         { "stdio.h",
@@ -253,6 +254,23 @@ const StdLibIndex::Index StdLibIndex::c99idx_
             {
                 { "strtoimax", SymbolKind::Value },
                 { "strtoumax", SymbolKind::Value }
+            }
+        },
+        { "stdint.h",
+            {
+                { "uint8_t", SymbolKind::Value },
+                { "int8_t", SymbolKind::Value },
+                { "uint16_t", SymbolKind::Value },
+                { "int16_t", SymbolKind::Value },
+                { "uint32_t", SymbolKind::Value },
+                { "int32_t", SymbolKind::Value },
+                { "uint64_t", SymbolKind::Value },
+                { "int64_t", SymbolKind::Value }
+            }
+        },
+        { "stddef.h",
+            {
+                { "size_t", SymbolKind::Value }
             }
         }
     };
