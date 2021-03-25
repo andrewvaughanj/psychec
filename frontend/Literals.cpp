@@ -107,14 +107,21 @@ NumericLiteral::NumericLiteral(const char *chars, unsigned size)
         }
 
         for (const char *dot = it; dot != begin - 1; --dot) {
-            if (*dot == '.')
-                f._type = NumericLiteralIsDouble;
+            if (*dot == '.') {
+                /*
+                 * We prefer floats to doubles
+                 */
+                f._type = NumericLiteralIsFloat;
+            }
         }
 
         for (++it; it != end; ++it) {
             if (*it == 'l' || *it == 'L') {
                 if (f._type == NumericLiteralIsDouble) {
                     f._type = NumericLiteralIsLongDouble;
+                } else if (f._type == NumericLiteralIsFloat) {
+                    /* promote float to double in the case of 'l' */
+                    f._type = NumericLiteralIsDouble;
                 } else if (it + 1 != end && (it[1] == 'l' || it[1] == 'L')) {
                     ++it;
                     f._type = NumericLiteralIsLongLong;
