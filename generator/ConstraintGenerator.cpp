@@ -672,7 +672,8 @@ bool ConstraintGenerator::visit(ArrayAccessAST* ast)
     ENSURE_NONEMPTY_TYPE_STACK(return false);
     writer_->writeEquivRel(types_.top(), std::get<2>(a1a2a3));
 
-    writer_->writeEquivRel(std::get<1>(a1a2a3), kSizeTy);
+    /* used to be kSizeTy, but size_t is not built-in */
+    writer_->writeEquivRel(std::get<1>(a1a2a3), kIntTy);
 
     return false;
 }
