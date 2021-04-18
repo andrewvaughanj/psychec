@@ -24,7 +24,9 @@ def execute(parent, cmd, *args, **kwargs):
 
     with xtrace(parent, flatten(cmd)) as h:
         try:
-            code = subprocess.call(cmd, *args, **kwargs)
+            with subprocess.Popen(cmd, *args, **kwargs) as process:
+                _, _ = process.communicate()
+            code = process.returncode
         except:
             sys.exit(
                 DiagnosticReporter.fatal(EXCEPTION_EXECUTING_PROCESS, cmd[0]))
