@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#include <cstddef>
+
 #include "Symbols.h"
 
 #include "Names.h"
@@ -591,7 +593,7 @@ Class::Class(Clone *clone, Subst *subst, Class *original)
     : Scope(clone, subst, original)
     , _key(original->_key)
 {
-    for (size_t i = 0; i < original->_baseClasses.size(); ++i)
+    for (std::size_t i = 0; i < original->_baseClasses.size(); ++i)
         addBaseClass(clone->symbol(original->_baseClasses.at(i), subst)->asBaseClass());
 }
 
